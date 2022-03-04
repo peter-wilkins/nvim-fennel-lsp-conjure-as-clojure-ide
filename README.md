@@ -1,5 +1,5 @@
 # What is this?
-Basic config to transform your NVIM in a powerful Clojure IDE using fennel, clojure-lsp and conjure.  
+Basic config to transform your NVIM in a powerful Clojure IDE using fennel, clojure-lsp and conjure.
 This is simplified version on my personal [dotfiles](https://github.com/rafaeldelboni/dotfiles) setup, I highly recommend you to check it out for more advanced and updated configurations.
 
 ## Prerequisites
@@ -11,7 +11,7 @@ Things you need installed in your OS to use this setup
 
 ## How to use
 
-**Make sure you backup your current configuration files in `$HOME/.config/nvim` BEFORE running this.**  
+**Make sure you backup your current configuration files in `$HOME/.config/nvim` BEFORE running this.**
 
 Run these commands in the root of this repo:
 ```bash
@@ -19,7 +19,7 @@ Run these commands in the root of this repo:
 rm -rf $HOME/.config/nvim
 
 # Makes a symbolic link to the files in this repo
-ln -sf $PWD/.config/*/ $HOME/.config/
+ln -sf $PWD/.config/nvim $HOME/.config/nvim
 ```
 When you start nvim for the first time it will download packer and aniseed and show some errors, thats normal press enter to ignore and go to the nvim console pressing `:` and type `PackerInstall`.
 This will install all plugins declared in `fnl/config/plugin.fnl`, after packer's panel showing all the plugins where installed, close nvim and open it again, no errors should show up this time.
@@ -33,6 +33,8 @@ This will install all plugins declared in `fnl/config/plugin.fnl`, after packer'
  - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) *Quickstart configurations for the Nvim LSP client*
  - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) *Autocompletion plugin*
  - [github-nvim-theme](https://github.com/projekt0n/github-nvim-theme) *Github theme for Neovim*
+ - [tpope-vim-sexp-bundle](https://github.com/tpope/vim-sexp-mappings-for-regular-people) *sexp mappings for regular people*
+ - [lualine](https://github.com/nvim-lualine/lualine.nvim) *neovim statusline plugin written in pure lua*
 
 ## Files
 
@@ -65,7 +67,7 @@ in file located in the following path `fnl/config/plugin/telescope`, where I usu
 Conjure specifics settings, I like to remap the doc work keymap to be `<localleader>K` instead the only `K`, to not conflict with the LSP docs `K`.
 
 ### [fnl/config/plugin/telescope.fnl](https://github.com/rafaeldelboni/nvim-fennel-lsp-conjure-as-clojure-ide/blob/main/.config/nvim/fnl/config/plugin/telescope.fnl)
-Settings like ignore `node_modules` and everything in `.gitignore` to be listed in the file finder.  
+Settings like ignore `node_modules` and everything in `.gitignore` to be listed in the file finder.
 Keymaps:
  - `<leader>ff` open the find files
  - `<leader>fg` open the fuzzy finder
@@ -76,7 +78,7 @@ Keymaps:
 Settings to select which treesitter's features we want enabled and which language extension we want to ensure they will be always installed.
 
 ### [fnl/config/plugin/lspconfig.fnl](https://github.com/rafaeldelboni/nvim-fennel-lsp-conjure-as-clojure-ide/blob/main/.config/nvim/fnl/config/plugin/lspconfig.fnl)
-All about nvim's lsp settings and keymaps.  
+All about nvim's lsp settings and keymaps.
 
 #### Settings:
 
@@ -97,10 +99,10 @@ All about nvim's lsp settings and keymaps.
     - `<leader>lj` Go to next diagnostic
     - `<leader>lk` Go to previous diagnostic
     - `<leader>la` Open code actions menu (Using telescope plugin interface)
-    - `<leader>la` Open code actions menu for the selected text in **VISUAL mode** (Using telescope plugin interface) 
-    - `<leader>lw` Open workspace diagnostics list (Using telescope plugin interface) 
-    - `<leader>lr` Show all references list for item under the cursor (Using telescope plugin interface) 
-    - `<leader>lr` Show all implementations list for item under the cursor (Using telescope plugin interface) 
+    - `<leader>la` Open code actions menu for the selected text in **VISUAL mode** (Using telescope plugin interface)
+    - `<leader>lw` Open workspace diagnostics list (Using telescope plugin interface)
+    - `<leader>lr` Show all references list for item under the cursor (Using telescope plugin interface)
+    - `<leader>lr` Show all implementations list for item under the cursor (Using telescope plugin interface)
 - Lastly we configure to use all settings above in clojure-lsp server instance.
 
 ### [fnl/config/plugin/cmp.fnl](https://github.com/rafaeldelboni/nvim-fennel-lsp-conjure-as-clojure-ide/blob/main/.config/nvim/fnl/config/plugin/cmp.fnl)
@@ -109,63 +111,69 @@ Here settings of which sources we want to show up in the autocomple menu like (c
 ### [fnl/config/plugin/theme.fnl](https://github.com/rafaeldelboni/nvim-fennel-lsp-conjure-as-clojure-ide/blob/main/.config/nvim/fnl/config/plugin/theme.fnl)
 Theme settings like style and comment style.
 
+### [fnl/config/plugin/sexp.fnl](https://github.com/rafaeldelboni/nvim-fennel-lsp-conjure-as-clojure-ide/blob/main/.config/nvim/fnl/config/plugin/sexp.fnl)
+Settings for vim-sexp like enabling it for another lisp languages like Fennel and Jannet
+
+### [fnl/config/plugin/lualine.fnl](https://github.com/rafaeldelboni/nvim-fennel-lsp-conjure-as-clojure-ide/blob/main/.config/nvim/fnl/config/plugin/lualine.fnl)
+Settings for lualine status line like some theme overides and setting what will be shown in the line.
+
 ## Features
 Some gifs showing how it works.
 
 ### Telescope - Find Files
-![telescope-find-files](docs/telescope-find-files.gif)  
+![telescope-find-files](docs/telescope-find-files.gif)
 **`<leader>ff`**
 
 ### Lsp - Syntax check
-![lsp-syntax-check](docs/lsp-syntax-check.gif)  
+![lsp-syntax-check](docs/lsp-syntax-check.gif)
 **`<leader>le`**
 
 ### Lsp - Go to definition
-![lsp-go-to-definition](docs/lsp-go-to-definition.gif)  
+![lsp-go-to-definition](docs/lsp-go-to-definition.gif)
 **`gd`**
 
 ### Lsp - Document/Signature Help
-![lsp-document](docs/lsp-document.gif)  
+![lsp-document](docs/lsp-document.gif)
 **`K`/`<leader>lh`**
 
 ### Lsp - Find definition/references
-![lsp-find-references](docs/lsp-find-references.gif)  
+![lsp-find-references](docs/lsp-find-references.gif)
 **`<leader>lr`**
 
 ### Lsp - Formatting
-![lsp-format](docs/lsp-format.gif)  
+![lsp-format](docs/lsp-format.gif)
 **`<leader>lf`**
 
 ### Lsp - Code actions
-![lsp-code-actions](docs/lsp-code-actions.gif)  
+![lsp-code-actions](docs/lsp-code-actions.gif)
 **`<leader>la`**
 
 ### Lsp - Refactorings
-![lsp-refactorings](docs/lsp-refactorings.gif)  
+![lsp-refactorings](docs/lsp-refactorings.gif)
 **`<leader>la`**
 
 ### Lsp - Rename
-![lsp-rename](docs/lsp-rename.gif)  
+![lsp-rename](docs/lsp-rename.gif)
 **`<leader>ln`**
 
 ### Conjure - Eval
-![conjure-eval](docs/conjure-eval.gif)  
+![conjure-eval](docs/conjure-eval.gif)
 **`<localleader>er`**
 
 ### Conjure - Repl
-![conjure-repl](docs/conjure-repl.gif)  
+![conjure-repl](docs/conjure-repl.gif)
 **`<localleader>lv`**
 
 ### Conjure - Document
-![conjure-document](docs/conjure-document.gif)  
+![conjure-document](docs/conjure-document.gif)
 **`<localleader>K`**
 
 ### Completion
-![auto-complete](docs/auto-complete.gif)  
+![auto-complete](docs/auto-complete.gif)
 
 ## Contributing
-If you find any dead links, misinformation or any improvements in this documents at all [Emails](https://github.com/rafaeldelboni), [PRs](https://github.com/rafaeldelboni/buildlogs/pulls) and [Issues](https://github.com/rafaeldelboni/buildlogs/issues) are highly encouraged.
+If you find any dead links, misinformation or any improvements in this documents at all [Emails](https://github.com/rafaeldelboni), [PRs](https://github.com/rafaeldelboni/nvim-fennel-lsp-conjure-as-clojure-ide/pulls) and [Issues](https://github.com/rafaeldelboni/nvim-fennel-lsp-conjure-as-clojure-ide/issues) are highly encouraged.
 
 ## License
-This is free and unencumbered software released into the public domain.  
+This is free and unencumbered software released into the public domain.
 For more information, please refer to <http://unlicense.org>
